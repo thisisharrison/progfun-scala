@@ -4,18 +4,24 @@ object week3_1 {
   oneHalf.denom
 
   val oneForth = new Rational(1, 4)
-  oneHalf.add(oneForth) // 6/8 -> gcd applied 3/4
+  oneHalf + oneForth // 6/8 -> gcd applied 3/4
 
   val x = new Rational(1, 3)
   val y = new Rational(5, 7)
   val z = new Rational(3, 2)
 
-  x.sub(y).sub(z) // -79/42
-  x.add(y).mul(z) // 66/42 -> gcd applied 11/7
-  x.div(z) // 2/9
+  x - y - z // -79/42
+//  precedence of an operator is determined by its first character
+//  without (), even the infix operator * is defined by Rational, it would still take higher priority than +
+  (x + y) * z // 66/42 -> gcd applied 11/7
+  x + y * z // 59/42
+  x / z // 2/9
 
-  x.less(y) // true
-  x.max(z) // 3/2
+  x < y // true
+  x max z // 3/2
+
+//  methods with parameter can be used like infix operators
+  x / z // 2/9
 
 //  guard illegal Rational
 //  val strange = new Rational(1, 0) // java.lang.IllegalArgumentException: requirement failed: denominator must be nonzero
@@ -46,31 +52,33 @@ object week3_1 {
     def denom = y / g
 
 //    Rational package methods
-    def add(r: Rational) =
+    def +(r: Rational) =
       new Rational((r.denom * numer + r.numer * denom), (denom * r.denom))
 
-    def neg: Rational =
+//    prefix operator - is different from infix -
+//    convention in scala is to call it unary_
+    def unary_- : Rational =
       new Rational(-numer, denom)
 
-    def sub(r: Rational) =
+    def - (r: Rational) =
 //      new Rational((r.denom * numer - r.numer * denom), (denom * r.denom)) // <- not DRY
-      add(r.neg)
+      this + -r
 
-    def mul(r: Rational) =
+    def * (r: Rational) =
       new Rational(r.numer * numer, r.denom * denom)
 
-    def div(r: Rational) =
+    def / (r: Rational) =
 //      new Rational(r.denom * numer, r.numer * denom) // <- not DRY
-      mul(new Rational(r.denom, r.numer))
+      this * new Rational(r.denom, r.numer)
 
-    def eq(r: Rational) =
+    def == (r: Rational) =
       r.denom * numer == denom * r.numer
 
 //    calling numer is abbreviation of this.numer
-    def less(r: Rational) = numer * r.denom < r.numer * denom
+    def < (r: Rational) = numer * r.denom < r.numer * denom
 
 //    `this` represents the object on which the current method is executed
-    def max(r: Rational) = if (this.less(r)) r else this
+    def max(r: Rational) = if (this < r) r else this
 
     override def toString(): String =
       numer + "/" + denom
