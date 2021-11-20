@@ -10,9 +10,13 @@ object week3_4 {
 
 //    implement a binary tree
 //    incl has two subtrees
-    class Empty extends IntSet {
+//    there's really only single empty IntSet and it's overkill to new Empty creating many instances of it
+//    refactor: using object definition - defines a singleton object named Empty
+//    no other instances can be (or need to be) created with new. It's created the first time we reference it
+//    evaluation: Singleton object are values so Empty evaluates to itself
+    object Empty extends IntSet {
         def contains(x: Int): Boolean = false
-        def incl(x: Int): IntSet = new NonEmpty(x, new Empty, new Empty)
+        def incl(x: Int): IntSet = new NonEmpty(x, Empty, Empty)
         override def toString = "."
     }
 
@@ -37,7 +41,7 @@ object week3_4 {
     }
 
 //    see how these are two trees
-    val root = new NonEmpty(3, new Empty, new Empty) // root: NonEmpty = {.3.}
+    val root = new NonEmpty(3, Empty, Empty) // root: NonEmpty = {.3.}
     val newRoot = root incl 4 // newRoot: IntSet = {.3{.4.}}
 
 }
