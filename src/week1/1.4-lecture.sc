@@ -1,5 +1,5 @@
 // Force Call By Name for y
-def constOne (x: Int, y: => Int) = 1
+def constOne(x: Int, y: => Int) = 1
 
 // If else
 def abs(x: Double) = if (x >= 0) x else -x

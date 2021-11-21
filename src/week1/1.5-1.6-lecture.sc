@@ -10,7 +10,7 @@ object session {
 
     def isGoodEnough(guess: Double, x: Double): Boolean = {
       val tolerance = 0.001
-//      abs(square(guess) - x) < tolerance - not great for small number and big number
+      //      abs(square(guess) - x) < tolerance - not great for small number and big number
       abs(square(guess) - x) / x < tolerance
     }
 
@@ -22,6 +22,7 @@ object session {
 
     sqrtIter(1, x)
   }
+
   sqrt(4)
   sqrt(1e-6)
   sqrt(1e60)

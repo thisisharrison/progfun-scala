@@ -17,6 +17,7 @@ object session {
 
     sqrtIter(1)
   }
+
   sqrt(4)
   sqrt(1e-6)
   sqrt(1e60)
