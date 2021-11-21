@@ -1,4 +1,4 @@
-package week4
+package week4.List
 
 trait List[T] {
   def isEmpty: Boolean

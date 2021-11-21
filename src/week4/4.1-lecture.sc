@@ -1,4 +1,7 @@
-import week4._
+import week4.List.{Cons, Nil}
+import week4.{List, _}
+
+import scala.annotation.tailrec
 
 object week4_1 {
   def singleton[T](elem: T) = new Cons[T](elem, new Nil[T])
@@ -11,7 +14,8 @@ object week4_1 {
   singleton(true)
 
 
-  def nth[T](n: Int, list: List[T]): T = {
+  @tailrec
+  def nth[T](n: Int, list: List.List[T]): T = {
     if (list.isEmpty) throw new IndexOutOfBoundsException
     else if (n == 0) list.head
     else nth(n - 1, list.tail)

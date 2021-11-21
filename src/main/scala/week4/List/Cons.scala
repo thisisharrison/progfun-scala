@@ -1,4 +1,4 @@
-package week4
+package week4.List
 
 // parameter and field definition
 // abbreviation to (_head: Int, _tail IntList) ... { val head = _head; val tail = _tail }
@@ -8,5 +8,5 @@ class Cons[T](val head: T, val tail: List[T]) extends List[T] {
   //  we don't need to def head and tail
   //  val parameters have implemented the definition
   //  difference between val and def is initialization: val when object is first initialized, def is evaluated each time it is referenced
-  
+
 }
