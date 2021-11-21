@@ -5,6 +5,7 @@ object Zero extends NaturalNumber {
 
   def predecessor: NaturalNumber = throw new Error("Zero: has no predecessor")
 
+  //  anything + 0 is just that
   def +(that: NaturalNumber): NaturalNumber = that
 
   def -(that: NaturalNumber): NaturalNumber = if (that.isZero) this else throw new Error("NaturalNumber: has no negative number")

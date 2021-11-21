@@ -6,6 +6,7 @@ abstract class NaturalNumber {
 
   def predecessor: NaturalNumber
 
+  //  successor is always new Successor of this
   def successor: NaturalNumber = new Succ(this)
 
   def +(that: NaturalNumber): NaturalNumber
